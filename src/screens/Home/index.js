@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Animated } from 'react-native'
-import * as Animatable from 'react-native-animatable'
+import SoundPlayer from 'react-native-sound-player'
 import { connect } from 'react-redux'
 import { globalAction } from '../../redux/actions/globalAction'
 import styles from './styles'
@@ -10,21 +10,24 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            total: this.props.data.pressed ? this.props.data.pressed : 0,
-            color: '#62B42C',
+            total: this.props.data.pressed == null ? 0 : this.props.data.pressed,
         }
         this.springValue = new Animated.Value(0.3)
     }
 
+    // Handle Press
     _onPress = () => {
         this.setState({ total: this.state.total + 1 })
         let payload = {
             pressed: this.state.total
         }
         this.props.dispatch(globalAction(payload))
-        this.spring()
+        this.spring() //<-- call animation when button pressed
+        this.playSound() //<-- call sound when button pressed
     }
+    //Handle Press
 
+    //animation
     spring = () => {
         this.springValue.setValue(0.3)
         Animated.spring(
@@ -35,17 +38,27 @@ class Home extends Component {
             }
         ).start()
     }
+    //animation
+
+    //play sound
+    playSound = () => {
+        try {
+            SoundPlayer.playSoundFile('tuturu', 'wav')
+        } catch (error) {
+            alert(error)
+        }
+    }
+    //play sound
 
     render() {
+        let { pressed } = this.props.data
         return (
             <View style={styles.container}>
-                <Text style={styles.fontBold}>Total Panda Pressed: {this.props.data.pressed}</Text>
+                <View style={styles.card}>
+                    <Text style={[styles.fontBold, { fontFamily: "GochiHand-Regular", fontStyle: 'italic' }]}>{pressed ? pressed : 0}</Text>
+                </View>
                 <TouchableOpacity onPress={this._onPress}>
-                    {/* <Text style={styles.textWhite}>CLICK ME!</Text> */}
-                    <Animated.Image
-                        style={{ width: 227, height: 200, transform: [{ scale: this.springValue }] }}
-                        source={require('../../assets/img/panda.png')}
-                    />
+                    <Animated.Image style={{ width: 227, height: 200, transform: [{ scale: this.springValue }] }} source={require('../../assets/img/panda.png')} />
                 </TouchableOpacity>
             </View>
         )

@@ -1,15 +1,30 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
+
+const window = Dimensions.get('window')
+let widthLong = window.width
+let heightLong = window.height
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: "#F8BBD0"
+    },
+    card: {
+        width: widthLong / 2,
+        height: heightLong / 8,
+        borderColor: '#E91E63',
+        borderWidth: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5
     },
     fontBold: {
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#000'
+        color: '#C2185B',
+        fontFamily: 'GochiHand-Regular'
     },
     button: {
         width: 100,
