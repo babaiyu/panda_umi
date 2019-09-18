@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, Animated } from 'react-native'
+import { View, Text, Animated, TouchableWithoutFeedback } from 'react-native'
 import SoundPlayer from 'react-native-sound-player'
 import { connect } from 'react-redux'
 import { globalAction } from '../../redux/actions/globalAction'
@@ -52,14 +52,15 @@ class Home extends Component {
 
     render() {
         let { pressed } = this.props.data
+        const { container, card, fontBold, title, image } = styles
         return (
-            <View style={styles.container}>
-                <View style={styles.card}>
-                    <Text style={[styles.fontBold, { fontFamily: "GochiHand-Regular", fontStyle: 'italic' }]}>{pressed ? pressed : 0}</Text>
+            <View style={container}>
+                <View style={card}>
+                    <Text style={[fontBold, title]}>{pressed ? pressed : 0}</Text>
                 </View>
-                <TouchableOpacity onPress={this._onPress}>
-                    <Animated.Image style={{ width: 227, height: 200, transform: [{ scale: this.springValue }] }} source={require('../../assets/img/panda.png')} />
-                </TouchableOpacity>
+                <TouchableWithoutFeedback onPress={this._onPress}>
+                    <Animated.Image style={[image, { transform: [{ scale: this.springValue }] }]} source={require('../../assets/img/panda.png')} />
+                </TouchableWithoutFeedback>
             </View>
         )
     }

@@ -1,8 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
 const window = Dimensions.get('window')
-let widthLong = window.width
-let heightLong = window.height
 
 export default StyleSheet.create({
     container: {
@@ -12,8 +10,8 @@ export default StyleSheet.create({
         backgroundColor: "#F8BBD0"
     },
     card: {
-        width: widthLong / 2,
-        height: heightLong / 8,
+        width: window.width / 2,
+        height: window.height / 8,
         borderColor: '#E91E63',
         borderWidth: 2,
         justifyContent: 'center',
@@ -37,5 +35,7 @@ export default StyleSheet.create({
     },
     textWhite: {
         color: '#fff'
-    }
+    },
+    title: { fontFamily: "GochiHand-Regular", fontStyle: 'italic' },
+    image: { width: 227, height: 200 }
 })

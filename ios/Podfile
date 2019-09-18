@@ -1,0 +1,38 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'pandaimut' do
+  pod 'AppCenter/Crashes', '~> 2.3.0'
+  pod 'AppCenter/Analytics', '~> 2.3.0'
+  pod 'AppCenterReactNativeShared', '~> 2.3.0'
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for pandaimut
+
+  
+
+  platform :ios, '9.0'
+  pod 'appcenter-analytics', :path => '../node_modules/appcenter-analytics'
+
+  pod 'appcenter-crashes', :path => '../node_modules/appcenter-crashes'
+
+  target 'pandaimutTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'pandaimut-tvOS' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for pandaimut-tvOS
+
+  target 'pandaimut-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
