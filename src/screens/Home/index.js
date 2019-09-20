@@ -4,6 +4,7 @@ import SoundPlayer from 'react-native-sound-player'
 import { connect } from 'react-redux'
 import { globalAction } from '../../redux/actions/globalAction'
 import styles from './styles'
+import { globalSelector } from '../../redux/selectors/globalSelector'
 
 class Home extends Component {
 
@@ -30,12 +31,8 @@ class Home extends Component {
     //animation
     spring = () => {
         this.springValue.setValue(0.3)
-        Animated.spring(
-            this.springValue,
-            {
-                toValue: 1,
-                friction: 1
-            }
+        Animated.spring(this.springValue,
+            { toValue: 1, friction: 1 }
         ).start()
     }
     //animation
@@ -68,7 +65,7 @@ class Home extends Component {
 
 function stateToProps(state) {
     return {
-        data: state.global.payload
+        data: globalSelector(state)
     }
 }
 
